@@ -26,12 +26,12 @@ const LineGraph: React.FC<LineGraphProps> = ({ data }) => {
       {
         label: "Average Salary (USD)",
         data: data.map((d) => d.avgSalary),
-        borderColor: "#ffb703", 
-        backgroundColor: "#023047", 
+        borderColor: "#ffb703",
+        backgroundColor: "#023047",
         fill: false,
-        tension: 0.3, 
-        pointHoverBackgroundColor: "#fb8500", 
-        pointRadius: 5, 
+        tension: 0.3,
+        pointHoverBackgroundColor: "#fb8500",
+        pointRadius: 5,
       },
     ],
   };
@@ -41,42 +41,42 @@ const LineGraph: React.FC<LineGraphProps> = ({ data }) => {
     plugins: {
       legend: {
         labels: {
-          color: "#023047", 
+          color: "#023047",
           font: {
-            size: 14, 
+            size: 14,
             family: "sans-serif",
           },
         },
       },
       tooltip: {
-        backgroundColor: "#fb8500", 
-        titleColor: "#ffffff", 
-        bodyColor: "#ffffff", 
+        backgroundColor: "#fb8500",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
       },
     },
     scales: {
       x: {
         ticks: {
-          color: "#023047", 
+          color: "#023047",
         },
         grid: {
-          color: "#E5E5E5", 
+          color: "#E5E5E5",
         },
       },
       y: {
         ticks: {
-          color: "#023047", 
+          color: "#023047",
         },
         grid: {
-          color: "#E5E5E5", 
+          color: "#E5E5E5",
         },
       },
     },
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 my-8">
-      <h2 className="text-2xl font-bold text-center mb-6 text-[#ffb703]">
+    <div className="max-w-full md:max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-4 md:p-6 my-8">
+      <h2 className="text-xl md:text-2xl font-bold text-center mb-4 md:mb-6 text-[#ffb703]">
         Average Salary by Year
       </h2>
       <div className="p-4 bg-[#f1f1f1] rounded-lg">

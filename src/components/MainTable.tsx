@@ -23,7 +23,6 @@ const MainTable: React.FC = () => {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [jobTitleData, setJobTitleData] = useState<JobTitleData[]>([]);
 
-  
   const fetchCSVData = async () => {
     try {
       const response = await fetch("/salaries.csv");
@@ -62,7 +61,6 @@ const MainTable: React.FC = () => {
             }
           });
 
-          
           const parsedData: JobData[] = Object.keys(yearMap).map((year) => {
             const totalJobs = yearMap[parseInt(year)].totalJobs;
             const avgSalary = yearMap[parseInt(year)].totalSalary / totalJobs;
@@ -75,8 +73,6 @@ const MainTable: React.FC = () => {
           });
 
           setData(parsedData);
-
-          
           setJobTitleData([]);
         },
       });
@@ -171,11 +167,11 @@ const MainTable: React.FC = () => {
   return (
     <>
       <h1 className="text-4xl font-bold text-center text-gray-800 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent py-4 mb-8">
-        ML Engineers Salary Analyzer 
+        ML Engineers Salary Analyzer
       </h1>
-      <div className="container mx-auto p-8">
+      <div className="container mx-auto p-4 md:p-8">
         {/* Main Table */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-8">
           <h1 className="text-2xl font-bold text-[#ffb703] mb-4">
             Job Data Overview
           </h1>
@@ -187,12 +183,13 @@ const MainTable: React.FC = () => {
               onClick: () => handleRowClick(record),
             })}
             className="border rounded-lg"
+            pagination={{ pageSize: 5 }} // Limit rows per page for better display on small screens
           />
         </div>
 
         {/* Job Title Table */}
         {selectedYear && jobTitleData.length > 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-8">
             <h2 className="text-xl font-bold text-[#ffb703] mb-4">
               Job Titles in {selectedYear}
             </h2>
@@ -201,15 +198,21 @@ const MainTable: React.FC = () => {
               dataSource={jobTitleData}
               rowKey="job_title"
               className="border rounded-lg"
+              pagination={{ pageSize: 5 }} // Limit rows per page for better display on small screens
             />
           </div>
         )}
 
         {/* Line Graph */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-white rounded-xl shadow-lg p-4 md:p-6">
           <LineGraph data={data} />
         </div>
       </div>
+      <footer className="bg-gray-900 text-white text-center py-4 mt-8">
+        <p className="text-sm">
+          &copy; 2024 Ashok Vaishnav. All Rights Reserved.
+        </p>
+      </footer>
     </>
   );
 };
